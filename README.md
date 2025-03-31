@@ -1,12 +1,12 @@
-esp32 S7306 驱动
+esp32 S7306 驱动 
+
+使用TE引脚中断刷屏，直接在头文件里面修改相应引脚
 
 示例代码：
 
 ```c++
 #include "ST7306_LCD.h"
-
 #define display st7306Lcd
-
 
 uint16_t red = 0b11111 << 11;
 uint16_t green = 0b111111 << 5;
@@ -26,7 +26,6 @@ uint16_t colorList[8] = {
     0xFFFF,//白
 };
 
-
 void repeat_draw_line(uint16_t x, uint16_t y, uint16_t color, uint8_t lineNum) {
     for (int i = 0; i < lineNum; i++) {
         display.drawPixel(x, y + i, color);
@@ -34,7 +33,6 @@ void repeat_draw_line(uint16_t x, uint16_t y, uint16_t color, uint8_t lineNum) {
 }
 
 void st7306_test1() {
-
 //    绘制几个矩形
     for (int y = 10; y < 50; y++) {
         for (int x = 60; x < 100; x++) {
@@ -87,8 +85,6 @@ void st7306_test1() {
 }
 
 void st7306_test() {
-    
-    
     //画点函数刷屏测试
     uint32_t t1 = esp_timer_get_time();
     
@@ -114,7 +110,6 @@ void st7306_test() {
     display.refreshReal();
     vTaskDelay(500);
 }
-
   
     display.begin();
     st7306_test();
@@ -140,3 +135,9 @@ static void disp_flush(lv_disp_drv_t *disp_drv, const lv_area_t *area, lv_color_
 }
 
 ```
+
+显示效果
+
+![display_image1](./display_image1.jpg)
+
+![display_image2](./display_image2.jpg)
